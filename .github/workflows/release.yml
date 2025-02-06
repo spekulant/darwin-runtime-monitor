@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Package and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP Archive
+        run: |
+          mkdir darwin-runtime-monitor
+          cp *.sh *.plist README.md LICENSE darwin-runtime-monitor/
+          zip -r darwin-runtime-monitor.zip darwin-runtime-monitor/
+
+      - name: Generate SHA256 Checksum
+        run: |
+          shasum -a 256 darwin-runtime-monitor.zip > darwin-runtime-monitor.zip.sha256
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: |
+            🚀 New release of Darwin Runtime Monitor!
+
+            **Download**
+            ```bash
+            curl -LO https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/darwin-runtime-monitor.zip
+            curl -LO https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/darwin-runtime-monitor.zip.sha256
+            ```
+
+            **Verify the integrity of the package**
+            ```bash
+            shasum -a 256 -c darwin-runtime-monitor.zip.sha256
+            ```
+
+            **Install the package**
+            ```bash
+            unzip darwin-runtime-monitor.zip
+            cd darwin-runtime-monitor
+            ./install.sh
+            ```
+
+            **Note**
+            This tool is not affiliated with or endorsed by Apple
+          draft: false
+          prerelease: false
+          make_latest: true
+          files: |
+            darwin-runtime-monitor.zip
+            darwin-runtime-monitor.zip.sha256
+            LICENSE
