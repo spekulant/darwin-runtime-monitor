@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ -z "$USER" ]; then
     echo "❌ USER environment variable must be set."
     exit 1
