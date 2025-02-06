@@ -30,8 +30,8 @@ This tool consists of three parts
 
 **Download**
 ```bash
-curl -LO https://github.com/spekulant/darwin-runtime-monitor/releases/download/latest/darwin-runtime-monitor.zip
-curl -LO https://github.com/spekulant/darwin-runtime-monitor/releases/download/latest/darwin-runtime-monitor.zip.sha256
+curl -LO https://github.com/spekulant/darwin-runtime-monitor/releases/latest/download/darwin-runtime-monitor.zip
+curl -LO https://github.com/spekulant/darwin-runtime-monitor/releases/latest/download/darwin-runtime-monitor.zip.sha256
 ```
 
 **Verify the integrity of the package**
