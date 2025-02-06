@@ -2,7 +2,12 @@
 
 set -e
 
-if [ -z "$USER" ]; then
+if [[ "$(uname)" != "Darwin" ]]; then
+    echo "❌ This script is intended for macOS only. Stopping the installation now."
+    exit 1
+fi
+
+if [[ -z "$USER" ]]; then
     echo "❌ USER environment variable must be set."
     exit 1
 fi
