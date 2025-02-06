@@ -6,7 +6,7 @@ Monitor information from system tooling and alert upon reaching configurable thr
 
 ## Screenshots
 
-**Medium Swap usage alerts**
+**Increased Swap usage alerts**
 
 <p align="left">
   <img width="256" src="media/swap-warning.png" alt="Example image removed">
